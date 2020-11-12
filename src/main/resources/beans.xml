@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- <bean/> definitions here -->
+    <bean name="homeAddress" class="io.pragra.learning.HomeAddress" init-method="abcMethod">
+        <constructor-arg name="streetAddress" value="200"></constructor-arg>
+        <constructor-arg name="streetName" value="Matheson Blvd"></constructor-arg>
+        <constructor-arg name="city" value="Missiauga"></constructor-arg>
+        <constructor-arg name="country" value="Canada"></constructor-arg>
+    </bean>
+    <bean name="format" class="java.text.NumberFormat" factory-method="getInstance"></bean>
+
+    <bean name="officeAddress" class="io.pragra.learning.OfficeAddress">
+        <property name="officeName" value="Pragra Inc"></property>
+        <property name="format" ref="format"></property>
+    </bean>
+
+    <bean name="person" init-method="init" destroy-method="destroy" class="io.pragra.learning.Person" scope="singleton">
+        <constructor-arg name="name" value="Asmi"></constructor-arg>
+        <constructor-arg name="age" value="26"></constructor-arg>
+        <constructor-arg name="address" ref="homeAddress"></constructor-arg>
+        <constructor-arg name="hobbies">
+           <list>
+               <value> Reading </value>
+               <value> Cooking </value>
+               <value> Traveling </value>
+               <value> Watching TV </value>
+           </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
